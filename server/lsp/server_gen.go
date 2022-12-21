@@ -148,8 +148,8 @@ func (s *Server) IncomingCalls(context.Context, *protocol.CallHierarchyIncomingC
 	return nil, notImplemented("IncomingCalls")
 }
 
-func (s *Server) Initialize(context.Context, *protocol.ParamInitialize) (*protocol.InitializeResult, error) {
-	return nil, notImplemented("Initialize")
+func (s *Server) Initialize(ctx context.Context, params *protocol.ParamInitialize) (*protocol.InitializeResult, error) {
+	return s.initialize(ctx, params)
 }
 
 func (s *Server) Initialized(context.Context, *protocol.InitializedParams) error {
