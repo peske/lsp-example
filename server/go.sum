@@ -1,4 +1,4 @@
-github.com/peske/lsp v0.0.0-20221221055142-c16cf22e3d20 h1:4pS8uNpb6i+/2rAWb5dcQ/Rr3zT+xYIj5lX+HJIDQ3k=
-github.com/peske/lsp v0.0.0-20221221055142-c16cf22e3d20/go.mod h1:MLQMnrgRbOOXpLVrkwqxkMRY4zGwCFdOrhoq9TQy+Ak=
+github.com/peske/lsp v0.0.0-20221221231535-175052622ebe h1:ueToORBYaQvSjWQvk6NIPwJ6q2vQj/65tm56S3y+Taw=
+github.com/peske/lsp v0.0.0-20221221231535-175052622ebe/go.mod h1:MLQMnrgRbOOXpLVrkwqxkMRY4zGwCFdOrhoq9TQy+Ak=
 github.com/peske/x-tools-internal v0.0.0-20221220211405-64f38867c1be h1:v9WF+Vg6pTVndALnPse4Bl6r1yPg/Uagto0JbmS73+4=
 github.com/peske/x-tools-internal v0.0.0-20221220211405-64f38867c1be/go.mod h1:BeOPgTX9m/c9hZkRpyYTeX/0PDy3L51A0VTXRSWjvMQ=
