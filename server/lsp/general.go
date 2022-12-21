@@ -2,6 +2,7 @@ package lsp
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"log"
 
@@ -18,7 +19,12 @@ func (s *Server) initialize(ctx context.Context, params *protocol.ParamInitializ
 	s.state = serverInitializing
 	s.mu.Unlock()
 
-	log.Printf("initialize; Client capabilities:\n%v", params.Capabilities)
+	log.Println("initialize; Client capabilities:")
+	if d, err := json.MarshalIndent(&params.Capabilities, "", "  "); err == nil {
+		log.Println(string(d))
+	} else {
+		log.Println(err)
+	}
 
 	s.clientCapabilities = params.Capabilities
 
@@ -41,4 +47,8 @@ func (s *Server) initialize(ctx context.Context, params *protocol.ParamInitializ
 			Version: "1.0.0",
 		},
 	}, nil
+}
+
+func (s *Server) initialized(ctx context.Context, params *protocol.InitializedParams) error {
+	return notImplemented("Initialized")
 }

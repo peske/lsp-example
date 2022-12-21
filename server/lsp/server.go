@@ -17,10 +17,16 @@ const (
 )
 
 type Server struct {
+	client protocol.ClientCloser
+
 	clientCapabilities protocol.ClientCapabilities
 
 	mu    sync.Mutex
 	state serverState
+}
+
+func NewServer(client protocol.ClientCloser) protocol.Server {
+	return &Server{client: client}
 }
 
 func notImplemented(method string) error {

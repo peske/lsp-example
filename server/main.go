@@ -37,7 +37,7 @@ func main() {
 	}()
 
 	// Launching the server:
-	serve := &cmd.Serve{Server: &lsp.Server{}}
+	serve := &cmd.Serve{ServerFactory: lsp.NewServer}
 	if err = serve.Run(context.Background()); err != nil {
 		log.Println(err)
 	} else {
