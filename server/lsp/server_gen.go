@@ -152,8 +152,8 @@ func (s *Server) Initialize(ctx context.Context, params *protocol.ParamInitializ
 	return s.initialize(ctx, params)
 }
 
-func (s *Server) Initialized(context.Context, *protocol.InitializedParams) error {
-	return notImplemented("Initialized")
+func (s *Server) Initialized(ctx context.Context, params *protocol.InitializedParams) error {
+	return s.initialized(ctx, params)
 }
 
 func (s *Server) InlayHint(context.Context, *protocol.InlayHintParams) ([]protocol.InlayHint, error) {
