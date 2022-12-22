@@ -112,8 +112,8 @@ func (s *Server) DocumentHighlight(context.Context, *protocol.DocumentHighlightP
 	return nil, notImplemented("DocumentHighlight")
 }
 
-func (s *Server) DocumentLink(context.Context, *protocol.DocumentLinkParams) ([]protocol.DocumentLink, error) {
-	return nil, notImplemented("DocumentLink")
+func (s *Server) DocumentLink(_gen context.Context, params *protocol.DocumentLinkParams) ([]protocol.DocumentLink, error) {
+	return s.documentLink(_gen, params)
 }
 
 func (s *Server) DocumentSymbol(context.Context, *protocol.DocumentSymbolParams) ([]interface{}, error) {
@@ -148,8 +148,8 @@ func (s *Server) IncomingCalls(context.Context, *protocol.CallHierarchyIncomingC
 	return nil, notImplemented("IncomingCalls")
 }
 
-func (s *Server) Initialize(ctx context.Context, params *protocol.ParamInitialize) (*protocol.InitializeResult, error) {
-	return s.initialize(ctx, params)
+func (s *Server) Initialize(_gen context.Context, params *protocol.ParamInitialize) (*protocol.InitializeResult, error) {
+	return s.initialize(_gen, params)
 }
 
 func (s *Server) Initialized(ctx context.Context, params *protocol.InitializedParams) error {
@@ -268,8 +268,8 @@ func (s *Server) SetTrace(context.Context, *protocol.SetTraceParams) error {
 	return notImplemented("SetTrace")
 }
 
-func (s *Server) Shutdown(context.Context) error {
-	return notImplemented("Shutdown")
+func (s *Server) Shutdown(_gen context.Context) error {
+	return s.shutdown(_gen)
 }
 
 func (s *Server) SignatureHelp(context.Context, *protocol.SignatureHelpParams) (*protocol.SignatureHelp, error) {

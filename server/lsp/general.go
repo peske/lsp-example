@@ -10,7 +10,7 @@ import (
 	"github.com/peske/x-tools-internal/jsonrpc2"
 )
 
-func (s *Server) initialize(ctx context.Context, params *protocol.ParamInitialize) (*protocol.InitializeResult, error) {
+func (s *Server) initialize(_ context.Context, params *protocol.ParamInitialize) (*protocol.InitializeResult, error) {
 	s.mu.Lock()
 	if s.state >= serverInitializing {
 		defer s.mu.Unlock()
@@ -89,5 +89,10 @@ func (s *Server) initialized(ctx context.Context, params *protocol.InitializedPa
 		}
 	}
 
+	return nil
+}
+
+func (s *Server) shutdown(_ context.Context) error {
+	log.Println("shutdown")
 	return nil
 }
