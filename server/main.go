@@ -1,28 +1,21 @@
 package main
 
 import (
-	"context"
-	"log"
+	"fmt"
 	"os"
 	"os/signal"
 
 	"github.com/peske/lsp-example/server/lsp"
-	"github.com/peske/lsp/cmd"
+	lsp_srv_ex "github.com/peske/lsp-srv-ex"
+	"go.uber.org/zap"
+
+	. "github.com/peske/lsp-example/server/logging"
 )
 
 func main() {
-	// Configure logging:
-	f, err := os.OpenFile("/tmp/lsp-example.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0777)
-	if err != nil {
-		log.Fatalf("error opening file: %v", err)
-	}
 	defer func() {
-		log.Println("exiting")
-		_ = f.Close()
+		_ = Logger.Sync()
 	}()
-	log.SetOutput(f)
-	log.Println("starting...")
-
 	// Listen for SIGINT, just to check if/when the server process gets killed:
 	c1 := make(chan os.Signal, 1)
 	c2 := make(chan bool, 1)
@@ -30,18 +23,18 @@ func main() {
 	go func() {
 		select {
 		case sig := <-c1:
-			log.Printf("os.Signal received: %v", sig)
+			Logger.Warn(fmt.Sprintf("os.Signal received: %v", sig))
 		case <-c2:
 			break
 		}
 	}()
 
 	// Launching the server:
-	serve := &cmd.Serve{ServerFactory: lsp.NewServer}
-	if err = serve.Run(context.Background()); err != nil {
-		log.Println(err)
+	cfg := &lsp_srv_ex.Config{Caching: true}
+	if err := lsp_srv_ex.Run(lsp.NewServer, cfg, Logger); err != nil {
+		Logger.Error("lsp_srv_ex.Run", zap.Error(err))
 	} else {
-		log.Println("stopped")
+		Logger.Info("Finished")
 	}
 
 	// Exit SIGINT listener:

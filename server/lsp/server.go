@@ -1,37 +1,37 @@
 package lsp
 
 import (
+	"context"
 	"fmt"
-	"github.com/peske/lsp/protocol"
-	"log"
-	"sync"
+	lsp_srv_ex "github.com/peske/lsp-srv-ex"
+	"github.com/peske/lsp-srv/lsp/protocol"
+	"go.uber.org/zap"
 )
 
-type serverState int
-
-const (
-	serverCreated      = serverState(iota)
-	serverInitializing // set once the server has received "initialize" request
-	serverInitialized  // set once the server has received "initialized" request
-	serverShutDown
-)
-
+// Server is the type mentioned in the instructions above.
 type Server struct {
 	client protocol.ClientCloser
+	helper *lsp_srv_ex.Helper
+	ctx    context.Context
+	cancel func()
 
 	clientCapabilities protocol.ClientCapabilities
 
-	mu    sync.Mutex
-	state serverState
+	logger *zap.Logger
 }
 
-func NewServer(client protocol.ClientCloser) protocol.Server {
-	return &Server{client: client}
+// NewServer is the factory function mentioned in the instructions above.
+func NewServer(client protocol.ClientCloser, ctx context.Context, cancel func(), helper *lsp_srv_ex.Helper) protocol.Server {
+	return &Server{
+		client: client,
+		helper: helper,
+		ctx:    ctx,
+		cancel: cancel,
+	}
 }
 
 func notImplemented(method string) error {
-	log.Printf("'%s' method call", method)
 	return fmt.Errorf("'%s' not implemented", method)
 }
 
-//go:generate ../lspgen -o server_gen.go -u .
+//go:generate ../lspgen -o server_gen.go -t Server -u .

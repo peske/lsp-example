@@ -9,7 +9,7 @@ package lsp
 import (
 	"context"
 
-	"github.com/peske/lsp/protocol"
+	"github.com/peske/lsp-srv/lsp/protocol"
 )
 
 func (s *Server) CodeAction(context.Context, *protocol.CodeActionParams) ([]protocol.CodeAction, error) {
@@ -48,8 +48,8 @@ func (s *Server) DiagnosticWorkspace(context.Context, *protocol.WorkspaceDiagnos
 	return nil, notImplemented("DiagnosticWorkspace")
 }
 
-func (s *Server) DidChange(context.Context, *protocol.DidChangeTextDocumentParams) error {
-	return notImplemented("DidChange")
+func (s *Server) DidChange(_gen context.Context, params *protocol.DidChangeTextDocumentParams) error {
+	return s.didChange(_gen, params)
 }
 
 func (s *Server) DidChangeConfiguration(context.Context, *protocol.DidChangeConfigurationParams) error {
@@ -84,8 +84,8 @@ func (s *Server) DidDeleteFiles(context.Context, *protocol.DeleteFilesParams) er
 	return notImplemented("DidDeleteFiles")
 }
 
-func (s *Server) DidOpen(context.Context, *protocol.DidOpenTextDocumentParams) error {
-	return notImplemented("DidOpen")
+func (s *Server) DidOpen(_gen context.Context, params *protocol.DidOpenTextDocumentParams) error {
+	return s.didOpen(_gen, params)
 }
 
 func (s *Server) DidOpenNotebookDocument(context.Context, *protocol.DidOpenNotebookDocumentParams) error {
@@ -112,8 +112,8 @@ func (s *Server) DocumentHighlight(context.Context, *protocol.DocumentHighlightP
 	return nil, notImplemented("DocumentHighlight")
 }
 
-func (s *Server) DocumentLink(_gen context.Context, params *protocol.DocumentLinkParams) ([]protocol.DocumentLink, error) {
-	return s.documentLink(_gen, params)
+func (s *Server) DocumentLink(context.Context, *protocol.DocumentLinkParams) ([]protocol.DocumentLink, error) {
+	return nil, notImplemented("DocumentLink")
 }
 
 func (s *Server) DocumentSymbol(context.Context, *protocol.DocumentSymbolParams) ([]interface{}, error) {
@@ -136,8 +136,8 @@ func (s *Server) Formatting(context.Context, *protocol.DocumentFormattingParams)
 	return nil, notImplemented("Formatting")
 }
 
-func (s *Server) Hover(context.Context, *protocol.HoverParams) (*protocol.Hover, error) {
-	return nil, notImplemented("Hover")
+func (s *Server) Hover(_gen context.Context, params *protocol.HoverParams) (*protocol.Hover, error) {
+	return s.hover(_gen, params)
 }
 
 func (s *Server) Implementation(context.Context, *protocol.ImplementationParams) ([]protocol.Location, error) {
@@ -268,8 +268,8 @@ func (s *Server) SetTrace(context.Context, *protocol.SetTraceParams) error {
 	return notImplemented("SetTrace")
 }
 
-func (s *Server) Shutdown(_gen context.Context) error {
-	return s.shutdown(_gen)
+func (s *Server) Shutdown(context.Context) error {
+	return notImplemented("Shutdown")
 }
 
 func (s *Server) SignatureHelp(context.Context, *protocol.SignatureHelpParams) (*protocol.SignatureHelp, error) {

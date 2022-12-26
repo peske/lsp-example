@@ -1,0 +1,7 @@
+package main
+
+import "github.com/peske/lsp-srv/lsp/helper"
+
+func main() {
+	helper.Generate()
+}

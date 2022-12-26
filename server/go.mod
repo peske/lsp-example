@@ -2,6 +2,15 @@ module github.com/peske/lsp-example/server
 
 go 1.19
 
-require github.com/peske/lsp v0.0.0-20221221231535-175052622ebe
+require (
+	github.com/peske/lsp-srv v0.0.0-20221225110427-eec0939e3bba
+	github.com/peske/lsp-srv-ex v0.0.0-20221226082110-02af022489a8
+	go.uber.org/zap v1.24.0
+)
 
-require github.com/peske/x-tools-internal v0.0.0-20221220211405-64f38867c1be
+require (
+	github.com/peske/x-tools-internal v0.0.0-20221224074235-165c0e8343d6 // indirect
+	go.uber.org/atomic v1.10.0 // indirect
+	go.uber.org/multierr v1.9.0 // indirect
+	golang.org/x/tools v0.4.0 // indirect
+)
