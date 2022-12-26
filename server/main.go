@@ -16,6 +16,8 @@ func main() {
 	defer func() {
 		_ = Logger.Sync()
 	}()
+	Logger.Info("Starting...")
+
 	// Listen for SIGINT, just to check if/when the server process gets killed:
 	c1 := make(chan os.Signal, 1)
 	c2 := make(chan bool, 1)
