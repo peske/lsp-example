@@ -21,7 +21,7 @@ func (s *Server) checkDiagnostics(uri span.URI) {
 	if f == nil {
 		s.logger.Error(fmt.Sprintf("checkDiagnostics; '%s' not found.", string(uri)))
 	}
-	mp := protocol.NewColumnMapper(f.URI(), f.Content)
+	mp := protocol.NewMapper(f.URI(), f.Content)
 	prm := &protocol.PublishDiagnosticsParams{
 		URI:         protocol.URIFromSpanURI(f.URI()),
 		Version:     f.Version,
@@ -35,7 +35,7 @@ func (s *Server) checkDiagnostics(uri span.URI) {
 	}
 }
 
-func (s *Server) getDiagnosticsForWord(mapper *protocol.ColumnMapper, word string, severity protocol.DiagnosticSeverity,
+func (s *Server) getDiagnosticsForWord(mapper *protocol.Mapper, word string, severity protocol.DiagnosticSeverity,
 	message string) []protocol.Diagnostic {
 	ds := make([]protocol.Diagnostic, 0)
 	rx := regexp.MustCompile(fmt.Sprintf(`(?i)(^|\s)%s($|\s)`, word))

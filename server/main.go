@@ -6,7 +6,7 @@ import (
 	"os/signal"
 
 	"github.com/peske/lsp-example/server/lsp"
-	lsp_srv_ex "github.com/peske/lsp-srv-ex"
+	"github.com/peske/lsp-srv-ex"
 	"go.uber.org/zap"
 
 	. "github.com/peske/lsp-example/server/logging"
