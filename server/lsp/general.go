@@ -12,17 +12,17 @@ func (s *Server) initialize(_ context.Context, params *protocol.ParamInitialize)
 
 	return &protocol.InitializeResult{
 		Capabilities: protocol.ServerCapabilities{
-			CompletionProvider: protocol.CompletionOptions{
+			CompletionProvider: &protocol.CompletionOptions{
 				ResolveProvider: false,
 			},
-			Workspace: protocol.Workspace6Gn{
-				WorkspaceFolders: protocol.WorkspaceFolders5Gn{
+			Workspace: &protocol.Workspace6Gn{
+				WorkspaceFolders: &protocol.WorkspaceFolders5Gn{
 					Supported: s.clientCapabilities.Workspace.WorkspaceFolders,
 				},
 			},
-			HoverProvider: false,
+			HoverProvider: nil,
 		},
-		ServerInfo: protocol.PServerInfoMsg_initialize{
+		ServerInfo: &protocol.PServerInfoMsg_initialize{
 			Name:    "lsp-sample-server",
 			Version: "1.0.0",
 		},
